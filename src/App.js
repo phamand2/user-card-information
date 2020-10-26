@@ -32,7 +32,7 @@ class App extends React.Component {
     return (
     <div className='container'>
       <div className="App">
-        <h1>Welcome To Single People</h1>
+        <h1>Meet Your Local Single People</h1>
         {userList}
         <div className='card userProfile'>
           
