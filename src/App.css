@@ -1,0 +1,20 @@
+.App {
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.profile {
+  height: 100%;
+  width: 100%;
+}
+
+.userProfile {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
