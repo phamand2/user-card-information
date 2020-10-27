@@ -7,26 +7,28 @@ export default class UserCard extends React.Component {
     super(props);
 
     this.state = {
-      url: null
+      url: null,
+      name: null,
+      location: null,
     }
   }
 
 
-  componentDidMount() {
-    this.getNewCard()
-
-  }
-
   getNewCard = () => {
     axios.get('https://randomuser.me/api/')
       .then((res) => {
-        const person = res.data;
+        const person = res.data.results[0];
         this.setState({
-          url: person.results,
-          name: person.results,
-          location: person.results,
+          url: person.picture,
+          name: person.name,
+          location: person.location,
         })
       })
+  }
+
+  componentDidMount() {
+    this.getNewCard()
+
   }
 
 
@@ -35,23 +37,24 @@ export default class UserCard extends React.Component {
     if (!this.state.url) {
       return '';
     }
+    const {name,location,url} = this.state;
+    
     return (
     <div className="card">
         <img
         className="card-img-top profile"
-        src={this.state.url[0].picture.large}
+        src={url.large}
         alt='User'
         onClick={this.getNewCard}
         />
         <div className='card-body'>
           <h5 className="card-title">User's Info</h5>
-          <p className="card-text">{this.state.name[0].name.first} {this.state.name[0].name.last}</p>
+          <p className="card-text">{name.first} {name.last}</p>
+          <p className="card-text">
+          {location.street.number} {location.street.name}, {location.city}
+          </p>
           <input className='btn btn-primary' type='button' value='Next Profile' onClick={this.getNewCard}></input>
         </div>
-
-
-
-
     </div>
 
 
